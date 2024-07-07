@@ -1,0 +1,12 @@
+.chats-white{
+     background-image: url("../assets/chat-bg-light.png"), url("../assets/chat-bg-br.jpeg");
+     background-size: 510px auto, cover;
+     background-repeat: repeat, no-repeat;
+     background-blend-mode:overlay;
+}
+.chats-black{
+     background-image: url("../assets/image.png");
+     background-size: 510px auto;
+     background-repeat: repeat;
+     background-color: #0F0F0F;
+}
