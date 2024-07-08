@@ -2,7 +2,9 @@ import { ArrowRight, Menu, Search, X } from "lucide-react";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../context/themecontext";
 
-const Toolbar = () => {
+const Toolbar = ({
+     toggleDrawer
+}) => {
      const { theme } = useContext(ThemeContext);
      const [inputStates, setInputState] = useState({
           isBack: false,
@@ -35,13 +37,13 @@ const Toolbar = () => {
      return (
           <div className={`lg:w-1/4 lg:min-w-[400px] break:w-full flex w-full h-[8%] px-6 justify-start items-center ${theme == "dark" ? 'bg-[#212121]':'bg-white'}`}>
                <div
-               
-               className={`transition-transform transform ${inputStates.isBack ? "rotate-180" : "rotate-0"}`}
+                    className={`transition-transform transform ${inputStates.isBack ? "rotate-180" : "rotate-0"}`}
                >
                {!inputStates.isBack ? (
                     <Menu
                          size={20}
                          className={`${theme === "dark" ? "text-white" : "text-[#212121]"}`}
+                         onClick={toggleDrawer}
                     />
                ) : (
                     <ArrowRight

@@ -5,7 +5,8 @@ import dayjs from 'dayjs';
 const ChatList = ({ data }) => {
   const renderMessages = () => {
     let lastDate = null;
-    return data.map((chat, index) => {
+    if(!data) return 
+    return data?.map((chat, index) => {
       const isSender = chat.sender_id === 1; // sender_id 1 is me
       const messageDate = dayjs(chat.created_at).format('YYYY-MM-DD');
       const showTimestamp = lastDate !== messageDate;

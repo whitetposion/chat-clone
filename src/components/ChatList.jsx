@@ -2,6 +2,7 @@ import { useState, useContext, useEffect, useRef, useCallback } from "react"
 import { ThemeContext } from "../context/themecontext"
 import Avatar from "./Avatar"
 import fetchChats from "../api/get_all_messages"
+import formatDateString from "../utils/timeformatter"
 
 const ChatList = ({
   setOpenedChat
@@ -49,13 +50,13 @@ const ChatList = ({
                       key={index} 
                       className="cursor-pointer h-[100px] w-full flex justify-between items-center bg-transparent px-4"
                       ref={chats.length === index + 1 ? lastChatElementRef : null}
-                      onClick ={()=>setOpenedChat(chat.id)}
+                      onClick ={()=>setOpenedChat(chat.creator)}
                     >
                          <Avatar firstName={firstName} />
                          <div className="flex-1 mx-2">
                               <div className={`text-[16px] overflow-hidden font-semibold ${theme === "dark" ? "text-white": "text-black"}`}>
                                    {
-                                        chat.creator.name ? chat.creator.name : chat.creator.city
+                                        chat.creator.name ? chat.creator.name : "Unknown"
                                    }
                               </div>
                               <div className={`text-[14px] overflow-hidden font-normal ${theme === "dark" ? "text-[#A2A2A2]": "text-[#707579]"}`}>
@@ -66,7 +67,7 @@ const ChatList = ({
                          </div>
                          <div className="w-20px flex flex-col items-end">
                               <div className={`text-[12px] overflow-hidden font-normal ${theme === "dark" ? "text-[#686C6E]": "text-[#686C87]"}`}>
-                                   Jun 11
+                                   {formatDateString(chat.updated_at)}
                               </div>
                               <div className={`text-center h-[25px] w-[25px] flex justify-center items-center font-medium text-[14px] rounded-full 
                                    ${theme === "dark" ? "text-white bg-[#8774E1]": "text-white bg-[#00C73E]"}

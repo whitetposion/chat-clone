@@ -39,7 +39,7 @@ const Avatar = ({ firstName, icon }) => {
 
         style={{
           background: colors ? colors.back : "white",
-          }}
+        }}
       >
         {icon ? <img src={icon} alt={firstName} className="object-cover w-full h-full" /> : name}
       </div>

@@ -12,12 +12,12 @@ const ChatSection = ({
      const [chats, setChats] = useState([])
      useEffect(()=>{
           const getChats = async () =>{
-               const response = await chatsById(openedChat)
+               const response = await chatsById(openedChat.id)
                console.log(response)
                setChats(response)
           }
           getChats()
-     },[openedChat])
+     },[openedChat.id])
      const { theme } = useContext(ThemeContext)
      return (
           <div className={`flex-1 h-full`}>
@@ -29,10 +29,10 @@ const ChatSection = ({
                          <Avatar firstName={"abhishek"}/>
                         <div className="ml-2 flex flex-col justify-center">
                               <h4 className={`text-[18px] text-end font-semibold ${theme === "dark" ? "text-white": "text-black"}`}>
-                                   Abhishek
+                                   {openedChat.name ? openedChat.name : "Unknown"}
                               </h4>
                               <span className={`text-[14px] text-start leading-5 ${theme === "dark" ? "text-[#A2A2A2]": "text-[#707579]"}`}>
-                                   number
+                                   {openedChat.phone ? openedChat.phone : "No info"}
                               </span>
                         </div>
                     </div>
