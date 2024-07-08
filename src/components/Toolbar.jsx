@@ -33,20 +33,21 @@ const Toolbar = () => {
 
 
      return (
-          <div className={`flex w-full h-[7%] px-6 justify-start items-center ${theme == "dark" ? 'bg-[#212121]':'bg-white'}`}>
+          <div className={`lg:w-1/4 lg:min-w-[400px] break:w-full flex w-full h-[8%] px-6 justify-start items-center ${theme == "dark" ? 'bg-[#212121]':'bg-white'}`}>
                <div
-               onClick={handleToggleBack}
+               
                className={`transition-transform transform ${inputStates.isBack ? "rotate-180" : "rotate-0"}`}
                >
                {!inputStates.isBack ? (
                     <Menu
-                    size={20}
-                    className={`${theme === "dark" ? "text-white" : "text-[#212121]"}`}
+                         size={20}
+                         className={`${theme === "dark" ? "text-white" : "text-[#212121]"}`}
                     />
                ) : (
                     <ArrowRight
-                    size={20}
-                    className={`${theme === "dark" ? "text-white" : "text-[#212121]"}`}
+                         onClick={handleToggleBack}
+                         size={20}
+                         className={`${theme === "dark" ? "text-white" : "text-[#212121]"}`}
                     />
                )}
                </div>
@@ -60,18 +61,18 @@ const Toolbar = () => {
                }`}
                >
                <Search
-                    size={20}
+                    size={18}
                     className={`transition-colors ${
                     inputStates.isSelected
                     ? "text-[#8774E1]"
                     : theme === "dark"
                     ? "text-[#6B6B6B]"
-                    : "text-[#212121]"
+                    : "text-[#6B6B6B]"
                     }`}
                />
                <input
                     placeholder="Search"
-                    className={`ml-3 bg-transparent outline-none caret-[#3B94EC] caret-w-[1px] ${
+                    className={`ml-3 flex-1 bg-transparent outline-none caret-[#3B94EC] caret-w-[1px] ${
                     theme === "dark" ? "text-white" : "text-[#212121]"
                     }`}
                     value={inputValue}
