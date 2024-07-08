@@ -1,12 +1,26 @@
 import Avatar from "./Avatar"
-import { useContext } from "react"
+import Messages from "./Messages"
+import { useContext, useEffect, useState } from "react"
 import { ThemeContext } from "../context/themecontext"
 import { ArrowLeft } from "lucide-react"
+import chatsById from "../api/get_chats_by_id"
 
-const ChatSection = () => {
+
+const ChatSection = ({
+     openedChat
+}) => {
+     const [chats, setChats] = useState([])
+     useEffect(()=>{
+          const getChats = async () =>{
+               const response = await chatsById(openedChat)
+               console.log(response)
+               setChats(response)
+          }
+          getChats()
+     },[openedChat])
      const { theme } = useContext(ThemeContext)
      return (
-          <div className={`flex-1 h-full `}>
+          <div className={`flex-1 h-full`}>
                <div className={`h-[8%] w-full flex items-center ${theme === "dark" ? "bg-[#212121]" :"bg-white"}`}>
                     <div className={`break:hidden ${theme === "dark" ? "text-white" : "text-[#212121]"}`}>
                          <ArrowLeft/>
@@ -23,8 +37,8 @@ const ChatSection = () => {
                         </div>
                     </div>
                </div>
-               <div>
-                    
+               <div className="overflow-y-auto h-[92%] scrollbar">
+                    <Messages data ={chats}/>
                </div>
           </div>
      )
